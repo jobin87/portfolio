@@ -6,7 +6,6 @@ import { useTheme } from '@mui/material/styles';
 
 import { hideScrollY, varAlpha } from 'src/theme/styles';
 
-import { Logo } from 'src/components/logo';
 import { NavSectionMini, NavSectionVertical } from 'src/components/nav-section';
 import { Scrollbar } from 'src/components/scrollbar';
 
@@ -37,11 +36,11 @@ export function NavVertical({
 
   const renderNavVertical = (
     <>
-      {slots?.topArea ?? (
+      {/* {slots?.topArea ?? (
         <Box sx={{ pl: 3.5, pt: 2.5, pb: 1 }}>
           <Logo isSingle={false} />
         </Box>
-      )}
+      )} */}
 
       <Scrollbar fillContent>
         <NavSectionVertical data={data} sx={{ px: 2, flex: '1 1 auto' }} {...other} />
@@ -55,7 +54,7 @@ export function NavVertical({
     <>
       {slots?.topArea ?? (
         <Box sx={{ display: 'flex', justifyContent: 'center', py: 2.5 }}>
-          <Logo isSingle={true} />
+          {/* <Logo isSingle={true} /> */}
         </Box>
       )}
 

@@ -1,10 +1,10 @@
 import type { BoxProps } from '@mui/material/Box';
-import type { ContainerProps } from '@mui/material/Container';
 import type { Breakpoint } from '@mui/material/styles';
+import type { ContainerProps } from '@mui/material/Container';
 
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 
 import { layoutClasses } from 'src/layouts/classes';
 
@@ -28,7 +28,7 @@ export function Main({ children, isNavHorizontal, sx, ...other }: MainProps) {
         ...(isNavHorizontal && {
           '--layout-dashboard-content-pt': '40px',
         }),
-        ...sx,
+        ...sx, bgcolor:"#99d8ff"
       }}
       {...other}
     >

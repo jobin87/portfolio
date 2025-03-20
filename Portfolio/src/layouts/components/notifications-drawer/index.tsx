@@ -19,7 +19,6 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 import { varHover } from 'src/components/animate';
-import { CustomTabs } from 'src/components/custom-tabs';
 
 
 import type { NotificationItemProps } from './notification-item';
@@ -77,31 +76,7 @@ export function NotificationsDrawer({ data = [], sx, ...other }: NotificationsDr
     </Stack>
   );
 
-  const renderTabs = (
-    <CustomTabs variant="fullWidth" value={currentTab}>
-      {TABS.map((tab) => (
-        <Tab
-          key={tab.value}
-          iconPosition="end"
-          value={tab.value}
-          label={tab.label}
-          icon={
-            <Label
-              variant={((tab.value === 'Reports' || tab.value === currentTab) && 'filled') || 'soft'}
-              color={
-                (tab.value==='Reports'&& 'error') ||
-                (tab.value === 'Emergency' && 'error') ||
-                (tab.value === 'staff' && 'info') ||
-                'default'
-              }
-            >
-              {tab.count}
-            </Label>
-          }
-        />
-      ))}
-    </CustomTabs>
-  );
+  
   
 
 
@@ -141,7 +116,6 @@ export function NotificationsDrawer({ data = [], sx, ...other }: NotificationsDr
       >
         {renderHead}
 
-        {renderTabs}
 
 
 

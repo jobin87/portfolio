@@ -10,7 +10,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
-import { usePopover, CustomPopover } from 'src/components/custom-popover';
+import { CustomPopover, usePopover } from './custom-popover';
 
 // ----------------------------------------------------------------------
 

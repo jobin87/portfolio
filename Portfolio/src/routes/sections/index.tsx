@@ -3,24 +3,25 @@ import { Navigate, useRoutes } from 'react-router-dom';
 
 import { mainRoutes } from './main';
 import { CONFIG } from 'src/config-global';
-import { ProfileRoutes } from './dashboard';
+import {  profileRoutes } from './portfolio';
 
 // ----------------------------------------------------------------------
 
 export function Router() {
+  console.log("Redirect Path:", CONFIG.portfolio.redirectPath ); // ✅ Correct Placement
+
   return useRoutes([
     {
       path: '/',
-      element: <Navigate to={CONFIG.profile.redirectPath} replace />,
+      element: <Navigate to={CONFIG.portfolio.redirectPath } replace />,
+      
     },
-    
     // PROFILE
-    ...ProfileRoutes,
-
-    // Main
+    ...profileRoutes,
     ...mainRoutes,
 
     // No match
     { path: '*', element: <Navigate to="/404" replace /> },
   ]);
 }
+

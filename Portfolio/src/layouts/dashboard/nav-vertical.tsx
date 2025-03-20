@@ -6,8 +6,6 @@ import { useTheme } from '@mui/material/styles';
 
 import { hideScrollY, varAlpha } from 'src/theme/styles';
 
-import { NavSectionMini, NavSectionVertical } from 'src/components/nav-section';
-import { Scrollbar } from 'src/components/scrollbar';
 
 import { NavToggleButton } from '../components/nav-toggle-button';
 
@@ -25,7 +23,6 @@ export type NavVerticalProps = NavSectionProps & {
 
 export function NavVertical({
   sx,
-  data,
   slots,
   isNavMini,
   layoutQuery,
@@ -42,11 +39,6 @@ export function NavVertical({
         </Box>
       )} */}
 
-      <Scrollbar fillContent>
-        <NavSectionVertical data={data} sx={{ px: 2, flex: '1 1 auto' }} {...other} />
-
-        {/* {slots?.bottomArea ?? <NavUpgrade />} */}
-      </Scrollbar>
     </>
   );
 
@@ -58,17 +50,6 @@ export function NavVertical({
         </Box>
       )}
 
-      <NavSectionMini
-        data={data}
-        sx={{
-          pb: 2,
-          px: 0.5,
-          ...hideScrollY,
-          flex: '1 1 auto',
-          overflowY: 'auto',
-        }}
-        {...other}
-      />
 
       {/* {slots?.bottomArea} */}
     </>

@@ -13,7 +13,6 @@ import { Scrollbar } from "src/components/scrollbar";
 import { AnimateAvatar } from "src/components/animate";
 import { AccountButton } from "./account-button";
 import { SignOutButton } from "./sign-out-button";
-import { useUser } from "src/hooks/use-user";
 
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -31,10 +30,8 @@ export type AccountDrawerProps = IconButtonProps & {
 export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
   const theme = useTheme();
 
-  const { username, email, photoURL, role } = useUser();
 
   // State for profile images
-  const [currentPhoto, setCurrentPhoto] = useState(photoURL);
   const [previousPhoto] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   {selectedFile && <p>Selected File: {selectedFile.name}</p>}
@@ -59,12 +56,6 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
       setSelectedFile(file);
 
 
-      // Create a preview
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCurrentPhoto(reader.result as string);
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -75,7 +66,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
       <AnimateAvatar
         width={96}
         slotProps={{
-          avatar: { src: currentPhoto || photoURL, alt: username },
+          avatar: { src: ""},
           overlay: {
             border: 2,
             spacing: 3,
@@ -86,7 +77,6 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
           },
         }}
       >
-        {username?.charAt(0).toUpperCase()}
       </AnimateAvatar>
 
       {/* Hidden File Input */}
@@ -125,8 +115,8 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
     <>
       <AccountButton
         onClick={handleOpenDrawer}
-        photoURL={currentPhoto}
-        displayName={username}
+        photoURL=""
+        displayName=""
         sx={sx}
         {...other}
       />
@@ -148,11 +138,10 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
             {renderAvatar}
 
             <Typography variant="subtitle1" noWrap sx={{ mt: 2 }}>
-              User: {role}, {username}
+              User:
             </Typography>
 
             <Typography variant="body2" sx={{ color: "text.secondary", mt: 0.5 }} noWrap>
-              {email}
             </Typography>
 
             {/* Previous Image Display */}

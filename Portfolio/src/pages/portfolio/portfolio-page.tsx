@@ -1,12 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 
 import { CONFIG } from 'src/config-global';
-import { Profile } from 'src/sections/overview/view';
+import { ProfileView } from 'src/sections/portfolio/view';
 
 
 // ----------------------------------------------------------------------
 
-const metadata = { title: `Profile | ${CONFIG.appName}` };
+const metadata = { title: `profile - ${CONFIG.appName}` };
 
 export default function Page() {
   return (
@@ -15,7 +15,7 @@ export default function Page() {
         <title> {metadata.title}</title>
       </Helmet>
 
-      <Profile />
+      <ProfileView/>
     </>
   );
 }

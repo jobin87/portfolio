@@ -32,10 +32,9 @@ import { groupItems, applyFilter, getAllItems } from './utils';
 // ----------------------------------------------------------------------
 
 export type SearchbarProps = BoxProps & {
-  data?: NavSectionProps['data'];
 };
 
-export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps) {
+export function Searchbar({  sx, ...other }: SearchbarProps) {
   const theme = useTheme();
 
   const router = useRouter();
@@ -74,66 +73,60 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
     setSearchQuery(event.target.value);
   }, []);
 
-  const dataFiltered = applyFilter({
-    inputData: getAllItems({ data: navItems }),
-    query: searchQuery,
-  });
+  // const dataFiltered = applyFilter({
+  //   inputData: getAllItems({ data: navItems }),
+  //   query: searchQuery,
+  // });
 
-  const notFound = searchQuery && !dataFiltered.length;
+  // const notFound = searchQuery && !dataFiltered.length;
 
-  const renderItems = () => {
-    const dataGroups = groupItems(dataFiltered);
+  // const renderItems = () => {
+  //   const dataGroups = groupItems(dataFiltered);
 
-    return Object.keys(dataGroups)
-      .sort((a, b) => -b.localeCompare(a))
-      .map((group, index) => (
-        <Box component="ul" key={`${group}-${index}`}>
-          {dataGroups[group].map((item) => {
-            const { title, path } = item;
+  //   return Object.keys(dataGroups)
+  //     .sort((a, b) => -b.localeCompare(a))
+  //     .map((group, index) => (
+  //       // <Box component="ul" key={`${group}-${index}`}>
+  //       //   {dataGroups[group].map((item) => {
+  //       //     const { title, path } = item;
 
-            const partsTitle = parse(title, match(title, searchQuery));
+  //       //     const partsTitle = parse(title, match(title, searchQuery));
 
-            const partsPath = parse(path, match(path, searchQuery));
+  //       //     const partsPath = parse(path, match(path, searchQuery));
 
-            return (
-              <Box component="li" key={`${title}${path}`} sx={{ display: 'flex' }}>
-                <ResultItem
-                  path={partsPath}
-                  title={partsTitle}
-                  groupLabel={searchQuery && group}
-                  onClickItem={() => handleClick(path)}
-                />
-              </Box>
-            );
-          })}
-        </Box>
-      ));
-  };
+  //       //     // return (
+  //       //     //   // <Box component="li" key={`${title}${path}`} sx={{ display: 'flex' }}>
+  //       //     //   //   <ResultItem
+  //       //     //   //     path={partsPath}
+  //       //     //   //     title={partsTitle}
+  //       //     //   //     groupLabel={searchQuery && group}
+  //       //     //   //     onClickItem={() => handleClick(path)}
+  //       //     //   //   />
+  //       //     //   // </Box>
+  //       //     // );
+  //       //   })}
+  //       // </Box>
+  //     ));
+  // };
 
   const renderButton = (
-    <Box
-      display="flex"
-      alignItems="center"
-      onClick={search.onTrue}
-      sx={{
-        pr: { sm: 1 },
-        borderRadius: { sm: 1.5 },
-        cursor: { sm: 'pointer' },
-        bgcolor: { sm: varAlpha(theme.vars.palette.grey['500Channel'], 0.08) },
-        ...sx,
-      }}
-      {...other}
-    >
-      <IconButton disableRipple>
-        {/* https://icon-sets.iconify.design/eva/search-fill/ */}
-        <SvgIcon sx={{ width: 20, height: 20 }}>
-          <path
-            fill="currentColor"
-            d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42M5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6"
-          />
-        </SvgIcon>
-      </IconButton>
-    </Box>
+    <Box display="flex" alignItems="center" sx={{ border: "1px solid #ccc", borderRadius: "8px", px: 1, py: 0.5 ,mt: 2, ml:20}}>
+    <IconButton disableRipple>
+      <SvgIcon sx={{ width: 20, height: 20 }}>
+        <path
+          fill="currentColor"
+          d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42M5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6"
+        />
+      </SvgIcon>
+    </IconButton>
+    <InputBase
+      placeholder="Search..."
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      sx={{ ml: 1, flex: 1 }}
+    />
+  </Box>
+
   );
 
   return (
@@ -167,11 +160,11 @@ export function Searchbar({ data: navItems = [], sx, ...other }: SearchbarProps)
           />
         </Box>
 
-        {notFound ? (
+        {/* {notFound ? (
           <SearchNotFound query={searchQuery} sx={{ py: 15 }} />
         ) : (
           <Scrollbar sx={{ px: 3, pb: 3, pt: 2, height: 400 }}>{renderItems()}</Scrollbar>
-        )}
+        )} */}
       </Dialog>
     </>
   );

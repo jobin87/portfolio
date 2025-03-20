@@ -87,7 +87,7 @@ export function HeaderSection({
 
   return (
     <AppBar
-      position="sticky"
+      position="relative"
       className={layoutClasses.header}
       sx={{
         zIndex: "var(--layout-header-zIndex)",
@@ -123,7 +123,9 @@ export function HeaderSection({
             {slots?.centerArea}
           </Box>
 
-          {slots?.rightArea}
+          <Box >
+             {slots?.rightArea}
+          </Box>
         </Container>
       </Toolbar>
 

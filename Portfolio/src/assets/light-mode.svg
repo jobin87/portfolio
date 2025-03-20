@@ -1,0 +1,19 @@
+<!-- light mode -->
+<svg width="400" height="200" viewBox="-15 -19 30 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Center circle -->
+  <circle r="6"/>
+
+  <!-- Define the ray -->
+  <path id="ray" d="M 0, 11 L 0, 14" stroke="black" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Use transformations to replicate rays -->
+  <use href="#ray" transform="rotate(45)" />
+  <use href="#ray" transform="rotate(90)" />
+  <use href="#ray" transform="rotate(135)" />
+  <use href="#ray" transform="rotate(180)" />
+  <use href="#ray" transform="rotate(225)" />
+    <use href="#ray" transform="rotate(265)" />
+      <use href="#ray" transform="rotate(310)" />
+
+
+</svg>

@@ -14,7 +14,7 @@ export type NavHorizontalProps = NavSectionProps & {
   layoutQuery: Breakpoint;
 };
 
-export function NavHorizontal({ data, layoutQuery, sx, ...other }: NavHorizontalProps) {
+export function NavHorizontal({ layoutQuery, sx, ...other }: NavHorizontalProps) {
   return (
     <Box
       sx={{
@@ -47,7 +47,7 @@ export function NavHorizontal({ data, layoutQuery, sx, ...other }: NavHorizontal
           WebkitBackdropFilter: `blur(var(--layout-header-blur))`,
         }}
       >
-        <NavSectionHorizontal data={data} {...other} />
+        <NavSectionHorizontal {...other} />
       </Box>
     </Box>
   );

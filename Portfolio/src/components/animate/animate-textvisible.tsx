@@ -24,7 +24,7 @@ export function AnimatedText({
       sx={{
         fontSize: "1.2rem",
         fontWeight: "bold",
-        color: "white",
+        color: "red",
         ...sx,
       }}
       {...other}

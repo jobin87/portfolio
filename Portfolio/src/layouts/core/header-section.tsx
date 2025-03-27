@@ -39,6 +39,7 @@ export type HeaderSectionProps = AppBarProps & {
   disableElevation?: boolean;
   slots?: {
     leftArea?: React.ReactNode;
+    rightMostArea?: React.ReactNode;
     rightArea?: React.ReactNode;
     topArea?: React.ReactNode;
     centerArea?: React.ReactNode;
@@ -122,9 +123,17 @@ export function HeaderSection({
           >
             {slots?.centerArea}
           </Box>
-
-          <Box >
-             {slots?.rightArea}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 3, // Use gap instead of marginRight
+              minWidth: "auto", // Prevents overflow
+              flexShrink: 0, // Prevents resizing in mobile
+            }}
+          >
+            {slots?.rightMostArea}
+            {slots?.rightArea}
           </Box>
         </Container>
       </Toolbar>

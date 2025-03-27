@@ -2,12 +2,13 @@ import type { NavSectionProps } from 'src/components/nav-section';
 
 import { useEffect } from 'react';
 
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 
 import { usePathname } from 'src/routes/hooks';
+import { Typography } from '@mui/material';
 
-import { Scrollbar } from 'src/components/scrollbar';
+// import { Scrollbar } from 'src/components/scrollbar'
 
 // ----------------------------------------------------------------------
 
@@ -20,7 +21,7 @@ type NavMobileProps = NavSectionProps & {
   };
 };
 
-export function NavMobile({  open, onClose, slots, sx, ...other }: NavMobileProps) {
+export function NavMobile({  open, onClose, slots, sx }: NavMobileProps) {
   const pathname = usePathname();
 
   useEffect(() => {
@@ -34,6 +35,7 @@ export function NavMobile({  open, onClose, slots, sx, ...other }: NavMobileProp
     <Drawer
       open={open}
       onClose={onClose}
+      anchor="right"
       sx={{
         [`& .${drawerClasses.paper}`]: {
           overflow: 'unset',
@@ -43,12 +45,7 @@ export function NavMobile({  open, onClose, slots, sx, ...other }: NavMobileProp
         },
       }}
     >
-      {slots?.topArea ?? (
-        <Box sx={{ pl: 3.5, pt: 2.5, pb: 1,bgcolor:"red" }}>
-          {/* <Logo isSingle={false} /> */}
-        </Box>
-      )}
-
+      <Typography>hello</Typography>
 
       {slots?.bottomArea}
     </Drawer>

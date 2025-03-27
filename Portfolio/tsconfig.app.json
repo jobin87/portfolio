@@ -10,13 +10,12 @@
     "paths": {
       "src/*": ["./src/*"]
     },
-   
-        "resolveJsonModule": true,
-        "esModuleInterop": true,   
-    
+
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
 
     /* Bundler mode */
-"moduleResolution": "node",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",

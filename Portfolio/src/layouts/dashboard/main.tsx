@@ -28,7 +28,7 @@ export function Main({ children, isNavHorizontal, sx, ...other }: MainProps) {
         ...(isNavHorizontal && {
           '--layout-dashboard-content-pt': '40px',
         }),
-        ...sx, bgcolor:"#99d8ff"
+        ...sx,
       }}
       {...other}
     >

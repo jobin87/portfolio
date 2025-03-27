@@ -24,15 +24,15 @@ export function ModeButton({ sx, ...other }: SettingsButtonProps) {
       <IconButton
         aria-label="Toggle Dark Mode"
         onClick={toggleMode}
-        sx={{ p: 0, width: 20, height: 40, ...sx }}
+        sx={{ p: 0, width: 25, height: 30, ...sx }}
         {...other}
       >
         <Badge invisible={!settings.canReset}>
           {mode === "light" ? (
             // Moon Icon (Dark Mode Toggle)
             <svg
-              width="40"
-              height="40"
+              width="25"
+              height="30"
               viewBox="-15 -19 30 40"
               xmlns="http://www.w3.org/2000/svg"
               fill="black"

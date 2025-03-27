@@ -1,4 +1,12 @@
-import { Card, CardMedia, CardContent, Typography, Grid, Link, Button } from "@mui/material";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Grid,
+  Link,
+  Button,
+} from "@mui/material";
 import { m } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -11,39 +19,54 @@ const hospitalImages = ["/images/s1.png", "/images/s2.png", "/images/s3.png"];
 const portfolioImages = ["/images/is1.png", "/images/is2.png"];
 const netflixImages = ["/images/n1.png", "/images/n2.png"];
 
-const resume = "/resume/jobin_jose_resume(1).pdf"
+const resume = "/resume/jobin_jose_resume(1).pdf";
 
 const projects = [
   {
     title: "Hospital Management App",
     images: hospitalImages,
-    description: "A fully functional hospital management system that simplifies hospital operations.",
+    description:
+      "A fully functional hospital management system that simplifies hospital operations.",
     link: "https://hosman-beta.netlify.app",
   },
   {
     title: "Portfolio Website",
     images: portfolioImages,
-    description: "A modern and interactive personal portfolio showcasing my skills and projects.",
+    description:
+      "A modern and interactive personal portfolio showcasing my skills and projects.",
   },
   {
     title: "Netflix Clone UI",
     images: netflixImages,
-    description: "A Netflix UI design with basic user authentication for practice.",
+    description:
+      "A Netflix UI design with basic user authentication for practice.",
   },
 ];
 
 export default function MiddlePage() {
   // ✅ Debugging: Check if images exist
-  console.log("Project Images:", projects.map(p => p.images));
+  console.log(
+    "Project Images:",
+    projects.map((p) => p.images)
+  );
 
   return (
     <DashboardContent>
-      <Typography variant="h3" fontWeight="bold" textAlign="center" sx={{ mb: 4 }}>
+      <Typography
+        variant="h3"
+        fontWeight="bold"
+        textAlign="center"
+        sx={{ mb: 4 }}
+      >
         My Projects
       </Typography>
-
       {/* ✅ Responsive Grid Layout */}
-      <Grid container spacing={4} justifyContent="center" sx={{ px: { xs: 2, md: 5 } }}>
+      <Grid
+        container
+        spacing={4}
+        justifyContent="center"
+        sx={{ px: { xs: 2, md: 5 } }}
+      >
         {projects.map((project, index) => (
           <Grid
             item
@@ -82,7 +105,10 @@ export default function MiddlePage() {
                         height="200"
                         image={img}
                         alt={`Slide ${idx + 1}`}
-                        sx={{ objectFit: "contain", backgroundColor: "#f5f5f5" }} // ✅ Prevents image clipping
+                        sx={{
+                          objectFit: "contain",
+                          backgroundColor: "#f5f5f5",
+                        }} // ✅ Prevents image clipping
                       />
                     </SwiperSlide>
                   ))}
@@ -127,7 +153,22 @@ export default function MiddlePage() {
           </Grid>
         ))}
       </Grid>
-      <Button>download resume</Button>
+      <Button
+        variant="contained"
+        color="primary"
+        sx={{ mt: 4 }}
+        onClick={() => {
+          const link = document.createElement("a");
+          link.href = resume;
+          link.download = "Jobin_Jose_Resume.pdf"; // Rename the downloaded file
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }}
+      >
+        Download Resume
+      </Button>
+      L{" "}
     </DashboardContent>
   );
 }

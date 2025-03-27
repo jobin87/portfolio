@@ -168,7 +168,7 @@ export default function MiddlePage() {
       >
         Download Resume
       </Button>
-      L{" "}
+      {" "}
     </DashboardContent>
   );
 }

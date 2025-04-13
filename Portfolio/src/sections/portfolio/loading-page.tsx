@@ -1,50 +1,31 @@
-import {
-  Avatar,
-  Box,
-  Card,
-  Typography,
-  Button,
-  Divider,
-  useTheme,
-} from "@mui/material";
+import { m } from "framer-motion";
+import {  Box, Typography, Divider, useTheme } from "@mui/material";
 import { DashboardContent } from "src/layouts/dashboard";
-import JavascriptIcon from "@mui/icons-material/Javascript";
-import HtmlIcon from "@mui/icons-material/Html";
-import CssIcon from "@mui/icons-material/Css";
-import { SiGithub } from "react-icons/si";
-import {
-  SiMongodb,
-  SiNodedotjs,
-  SiReact,
-  SiGit,
-  SiSwagger,
-  SiGraphql,
-  SiDocker,
-  SiKubernetes,
-  SiNextdotjs,
-  SiMysql,
-  SiOpenjdk,
-  SiNetlify,
-  SiRender,
-  SiTypescript,
-} from "react-icons/si";
+import { SiGithub, SiMongodb, SiNodedotjs, SiReact, SiGit, SiSwagger, SiGraphql, SiDocker, SiKubernetes, SiNextdotjs, SiMysql, SiOpenjdk, SiNetlify, SiRender, SiTypescript } from "react-icons/si";
 import { FaReact } from "react-icons/fa";
+import AnimatedOneText from "src/components/animate/animate-one-text";
+
+
+const scaleBounce = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0.5, rotate: -10 },
+  visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 const techIcons = {
-  HTML: <HtmlIcon fontSize="large" color="primary" />,
-  CSS: <CssIcon fontSize="large" color="primary" />,
-  JavaScript: <JavascriptIcon fontSize="large" sx={{ color: "#F7DF1E" }} />,
-  TypeScript:<SiTypescript size={40} color="#3178C6" />,
+  TypeScript: <SiTypescript size={40} color="#3178C6" />,
   React: <SiReact size={40} color="#61DAFB" />,
   "Node.js": <SiNodedotjs size={40} color="#83CD29" />,
   MongoDB: <SiMongodb size={40} color="#47A248" />,
   Git: <SiGit size={40} color="#F05032" />,
-  github:<SiGithub size={40} color="black" />,
+  GitHub: <SiGithub size={40} color="black" />,
   "Swagger API": <SiSwagger size={40} color="#85EA2D" />,
-  Netlify: <SiNetlify size={40} color="#00C7B7" />,  // Netlify teal color
+  Netlify: <SiNetlify size={40} color="#00C7B7" />,
   Render: <SiRender size={40} color="#46E3B7" />,
-
-  
 };
 
 const learningStack = {
@@ -59,70 +40,35 @@ const learningStack = {
 
 export const ProfileLoading = () => {
   const theme = useTheme();
-
   const textColor = theme.palette.mode === "dark" ? "white" : "black";
-  const bgColor = theme.palette.mode === "dark" ? theme.palette.background.paper : "white"; 
-  const fontGreenRed = theme.palette.mode === "dark" ? "green" : "red";
+  const fontGreenRed = theme.palette.mode === "dark" ? "white" : "black";
 
   return (
-    <DashboardContent
-      sx={{
-        minHeight: "100vh",
-        color: textColor,
-        overflowX: "hidden",
-      }}
+    <DashboardContent id="techstack"
+      sx={{ minHeight: "80vh", color: textColor, overflowX: "hidden",pb:4 }}
     >
-      {/* Animated Header */}
-      <Typography
-        variant="h3"
-        sx={{
-          textAlign: "center",
-          fontSize: { xs: "2rem", md: "3rem" },
-          fontWeight: "bold",
-        }}
-      >
-        CRAFT INNOVATIVE
-      </Typography>
-      <Typography
-        variant="h6"
-        sx={{
-          textAlign: "center",
-          mt: 1,
-          fontSize: { xs: "1rem", md: "1.5rem" },
-          color: fontGreenRed,
-        }}
-      >
-        PERFORMANCE-DRIVEN WEBSITES AND WEB APPLICATIONS THAT STAND OUT
-      </Typography>
+        <AnimatedOneText sx={{ textAlign: "center", fontWeight: "bold" }}>
+          CRAFT INNOVATIVE
+        </AnimatedOneText>
+
+      <m.div initial="hidden" animate="visible" variants={scaleBounce}>
+        <Typography
+          variant="h5"
+          sx={{
+            textAlign: "center",
+            mt: 1,
+            fontSize: { xs: "1rem", md: "1.5rem" },
+            color: fontGreenRed,
+          }}
+        >
+          PERFORMANCE-DRIVEN WEBSITES AND WEB APPLICATIONS THAT STAND OUT
+        </Typography>
+      </m.div>
 
       {/* Intro Text */}
-      <Typography
-        textAlign="center"
-        sx={{
-          maxWidth: "90%",
-          mx: "auto",
-          fontSize: { xs: "0.9rem", md: "1.1rem" },
-        }}
-      >
-        Passionate about crafting dynamic websites using HTML, CSS, JavaScript,
-        MERN, and TypeScript. Also experienced in backend development with
-        MongoDB, Express.js, and Node.js.
-      </Typography>
-
-      {/* Hire Me Button */}
-      {/* <Box textAlign="center" sx={{ mt: 3 }}>
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{ px: 4, py: 1.5, borderRadius: 2 }}
-        >
-          Hire Me
-        </Button>
-      </Box> */}
-
       {/* Tech Stack Section */}
-      <Box sx={{ textAlign: "center", mt: 6 }}>
-        <Typography variant="h5" fontWeight="bold">
+      <Box  sx={{ textAlign: "center", mt: 6  }} >
+        <Typography variant="h5" fontWeight="bold" >
           Tech Stack
         </Typography>
         <Divider
@@ -143,14 +89,18 @@ export const ProfileLoading = () => {
             flexWrap: "wrap",
           }}
         >
-          {Object.entries(techIcons).map(([tech, icon]) => (
-            <Box key={tech} sx={{ textAlign: "center" }}>
-              {icon}
-              <Typography>{tech}</Typography>
-            </Box>
+          {Object.entries(techIcons).map(([tech, icon], index) => (
+            <m.div key={tech} initial="hidden" animate="visible" variants={iconVariants} transition={{ delay: index * 0.1 }}>
+              <Box sx={{ textAlign: "center" }}>
+                {icon}
+                <Typography>{tech}</Typography>
+              </Box>
+            </m.div>
           ))}
         </Box>
       </Box>
+
+      {/* Learning Section */}
       <Box sx={{ textAlign: "center", mt: 6 }}>
         <Typography variant="h5" fontWeight="bold">
           Currently Learning
@@ -173,11 +123,13 @@ export const ProfileLoading = () => {
             flexWrap: "wrap",
           }}
         >
-          {Object.entries(learningStack).map(([tech, icon]) => (
-            <Box key={tech} sx={{ textAlign: "center" }}>
-              {icon}
-              <Typography>{tech}</Typography>
-            </Box>
+          {Object.entries(learningStack).map(([tech, icon], index) => (
+            <m.div key={tech} initial="hidden" animate="visible" variants={iconVariants} transition={{ delay: index * 0.1 }}>
+              <Box sx={{ textAlign: "center" }}>
+                {icon}
+                <Typography>{tech}</Typography>
+              </Box>
+            </m.div>
           ))}
         </Box>
       </Box>

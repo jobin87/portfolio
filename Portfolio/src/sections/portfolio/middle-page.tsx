@@ -5,7 +5,7 @@ import {
   Typography,
   Grid,
   Link,
-  Button,
+  Box,
 } from "@mui/material";
 import { m } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,10 +16,9 @@ import { DashboardContent } from "src/layouts/dashboard";
 
 // ✅ Image paths for projects (Ensure images exist in /public/images/ if using Next.js)
 const hospitalImages = ["/images/s1.png", "/images/s2.png", "/images/s3.png"];
-const portfolioImages = ["/images/is1.png", "/images/is2.png"];
-const netflixImages = ["/images/n1.png", "/images/n2.png"];
+const portfolioImages = ["/images/is1.png", "/images/is2.png","/images/is3.png"];
+const netflixImages = ["/images/sd1.png", "/images/ss1.png","/images/ss2.png","/images/ss3.png"];
 
-const resume = "/resume/jobin_jose_resume(1).pdf";
 
 const projects = [
   {
@@ -30,16 +29,20 @@ const projects = [
     link: "https://hosman-beta.netlify.app",
   },
   {
-    title: "Portfolio Website",
-    images: portfolioImages,
-    description:
-      "A modern and interactive personal portfolio showcasing my skills and projects.",
-  },
-  {
     title: "Netflix Clone UI",
     images: netflixImages,
     description:
       "A Netflix UI design with basic user authentication for practice.",
+      link: "https://netflikxx.netlify.app",
+
+  },
+  {
+    title: "Portfolio Website",
+    images: portfolioImages,
+    description:
+      "A modern and interactive personal portfolio showcasing my skills and projects.",
+      link: "https://hosman-beta.netlify.app",
+
   },
 ];
 
@@ -51,12 +54,17 @@ export default function MiddlePage() {
   );
 
   return (
-    <DashboardContent>
+    <DashboardContent  id="projects" >
+      <Box 
+         sx={{mt:0}}>
       <Typography
         variant="h3"
         fontWeight="bold"
         textAlign="center"
-        sx={{ mb: 4 }}
+        sx={{ mb: 4 ,mt:{
+          xs: 3, lg:3,
+
+        }}}
       >
         My Projects
       </Typography>
@@ -81,7 +89,7 @@ export default function MiddlePage() {
           >
             <Card
               sx={{
-                borderRadius: 2,
+                borderRadius: 0,
                 boxShadow: 3,
                 overflow: "hidden",
                 transition: "transform 0.3s ease",
@@ -153,22 +161,8 @@ export default function MiddlePage() {
           </Grid>
         ))}
       </Grid>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ mt: 4 }}
-        onClick={() => {
-          const link = document.createElement("a");
-          link.href = resume;
-          link.download = "Jobin_Jose_Resume.pdf"; // Rename the downloaded file
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }}
-      >
-        Download Resume
-      </Button>
-      {" "}
+      
+      </Box>
     </DashboardContent>
   );
 }

@@ -1,36 +1,36 @@
+import { useState, useEffect } from "react";
 import type { Theme, SxProps, Breakpoint } from "@mui/material/styles";
 
-import Box from "@mui/material/Box";
-import Alert from "@mui/material/Alert";
+import {
+  Box,
+  Button,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import PhoneIcon from "@mui/icons-material/Phone";
+import { SiGmail, SiLinkedin, SiGithub } from "react-icons/si";
+
 import { useTheme } from "@mui/material/styles";
 import { iconButtonClasses } from "@mui/material/IconButton";
-
 import { useBoolean } from "src/hooks/use-boolean";
 
-// import { allLangs } from 'src/locales';
-// import { _contacts, _notifications } from 'src/_mock';
-
 import { SettingsDrawer, useSettingsContext } from "src/components/settings";
-
 import { Main } from "./main";
 import { NavMobile } from "./nav-mobile";
 import { layoutClasses } from "../classes";
-// import { NavVertical } from './nav-vertical';
-// import { NavHorizontal } from './nav-horizontal';
-import { _workspaces } from "../config-nav-workspace";
 import { MenuButton } from "../components/menu-button";
 import { LayoutSection } from "../core/layout-section";
 import { HeaderSection } from "../core/header-section";
 import { StyledDivider, useNavColorVars } from "./styles";
-// import { LanguagePopover } from '../components/language-popover';
-// import { ContactsPopover } from '../components/contacts-popover';
-// import { WorkspacesPopover } from '../components/workspaces-popover';
 import { NavHorizontal } from "./nav-horizontal";
 import { ModeButton } from "../components/mode-button";
-import { Button, Typography } from "@mui/material";
-// import { NotificationsDrawer } from '../components/notifications-drawer';
+import { NavVertical } from "./nav-vertical";
 
-// ----------------------------------------------------------------------
+const resume = "/resume/jobin_jose_resume(1).pdf";
 
 export type DashboardLayoutProps = {
   sx?: SxProps<Theme>;
@@ -46,24 +46,28 @@ export function DashboardLayout({
   header,
 }: DashboardLayoutProps) {
   const theme = useTheme();
-
   const mobileNavOpen = useBoolean();
-
   const settings = useSettingsContext();
-
   const navColorVars = useNavColorVars(theme, settings);
 
   const layoutQuery: Breakpoint = "lg";
-
   const isNavMini = settings.navLayout === "mini";
   const isNavHorizontal = settings.navLayout === "horizontal";
   const isNavVertical = isNavMini || settings.navLayout === "vertical";
 
+  const [openDialog, setOpenDialog] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
+
+  useEffect(() => {
+    if (openDialog) {
+      setTimeout(() => setFadeIn(true), 100);
+    } else {
+      setFadeIn(false);
+    }
+  }, [openDialog]);
+
   return (
     <LayoutSection
-      /** **************************************
-       * Header
-       *************************************** */
       headerSection={
         <HeaderSection
           layoutQuery={layoutQuery}
@@ -91,23 +95,8 @@ export function DashboardLayout({
           }}
           sx={header?.sx}
           slots={{
-            topArea: (
-              <Alert severity="info" sx={{ display: "none", borderRadius: 0 }}>
-                This is an info Alert.
-              </Alert>
-            ),
-            bottomArea: isNavHorizontal ? (
-              <NavHorizontal
-                layoutQuery={layoutQuery}
-                cssVars={navColorVars.section}
-              />
-            ) : null,
             leftArea: (
               <>
-                {/* -- Nav mobile -- */}
-
-                {/* -- Logo -- */}
-                {/* -- Divider -- */}
                 {isNavHorizontal && (
                   <StyledDivider
                     sx={{
@@ -115,9 +104,125 @@ export function DashboardLayout({
                     }}
                   />
                 )}
-                {/* -- Workspace popover -- */}
-                <Typography>JOBIN JOSE</Typography>
+                <Typography variant="h4">JOBIN JOSE</Typography>
               </>
+            ),
+            centerArea: (
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexGrow: 1,
+                  gap: 2,
+                }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    fontSize: "1rem",
+                    padding: "5px 16px",
+                    borderRadius: "8px",
+                    background:
+                      "linear-gradient(90deg, #87CEEB, #1E90FF, #87CEEB)",
+                    animation: "gradientMove 3s infinite linear",
+                  }}
+                  onClick={() => setOpenDialog(true)}
+                >
+                  Connect
+                </Button>
+
+                <Dialog
+                  open={openDialog}
+                  onClose={() => setOpenDialog(false)}
+                  fullWidth
+                  maxWidth="xs"
+                  sx={{
+                    backdropFilter: fadeIn ? "blur(10px)" : "none",
+                    backgroundColor: "rgba(0, 0, 0, 0.2)",
+                    transition:
+                      "backdrop-filter 0.3s ease-in-out, background 0.3s ease-in-out",
+                  }}
+                  PaperProps={{
+                    sx: {
+                      width: "90%",
+                      maxWidth: "300px",
+                      background: fadeIn
+                        ? "rgba(255, 255, 255, 0.1)"
+                        : "rgba(255, 255, 255, 0)",
+                      backdropFilter: fadeIn ? "blur(20px)" : "none",
+                      borderRadius: "15px",
+                      border: "1px solid rgba(255, 255, 255, 0.2)",
+                      boxShadow: "0px 4px 30px rgba(0, 0, 0, 0.2)",
+                      transition:
+                        "background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out",
+                    },
+                  }}
+                >
+                  <DialogTitle>
+                    Connect With Me
+                    <IconButton
+                      aria-label="close"
+                      onClick={() => setOpenDialog(false)}
+                      sx={{ position: "absolute", right: 8, top: 8 }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                  </DialogTitle>
+
+                  <DialogContent
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 2,
+                      p: 3,
+                      opacity: fadeIn ? 1 : 0,
+                      transition: "opacity 0.3s ease-in-out",
+                      mt: 0, // ✅ Remove extra spacing
+                    }}
+                  >
+                    <Button
+                      startIcon={<SiGmail size={24} color="red" />}
+                      variant="contained"
+                      color="secondary"
+                      href="mailto:jose.jobiin@gmail.com"
+                      target="_blank"
+                      sx={{ justifyContent: "flex-start" }}
+                    >
+                      Gmail
+                    </Button>
+                    <Button
+                      startIcon={<SiLinkedin size={24} color="#0A66C2" />}
+                      variant="contained"
+                      color="primary"
+                      href="https://www.linkedin.com/in/jobin-jose"
+                      target="_blank"
+                      sx={{ justifyContent: "flex-start" }}
+                    >
+                      LinkedIn
+                    </Button>
+                    <Button
+                      startIcon={<SiGithub size={24} color="black" />}
+                      variant="contained"
+                      color="inherit"
+                      href="https://github.com/jobin87"
+                      target="_blank"
+                      sx={{ justifyContent: "flex-start" }}
+                    >
+                      GitHub
+                    </Button>
+                    <Button
+                      startIcon={<PhoneIcon />}
+                      variant="contained"
+                      color="success"
+                      href="tel:7034760724"
+                      sx={{ justifyContent: "flex-start" }}
+                    >
+                      Phone
+                    </Button>
+                  </DialogContent>
+                </Dialog>
+              </Box>
             ),
             rightMostArea: <ModeButton />,
             rightArea: (
@@ -127,48 +232,12 @@ export function DashboardLayout({
                 <NavMobile
                   open={mobileNavOpen.value}
                   onClose={mobileNavOpen.onFalse}
-                  cssVars={navColorVars.section}
                 />
               </Box>
             ),
           }}
         />
       }
-      /** **************************************
-       * Sidebar
-       *************************************** */
-      /** **************************************
-       * Footer
-       *************************************** */
-      footerSection={null}
-      /** **************************************
-       * Style
-       *************************************** */
-      cssVars={{
-        ...navColorVars.layout,
-        "--layout-transition-easing": "linear",
-        "--layout-transition-duration": "120ms",
-        "--layout-nav-mini-width": "88px",
-        "--layout-nav-vertical-width": "300px",
-        "--layout-nav-horizontal-height": "64px",
-        "--layout-dashboard-content-pt": theme.spacing(1),
-        "--layout-dashboard-content-pb": theme.spacing(8),
-        "--layout-dashboard-content-px": theme.spacing(5),
-      }}
-      sx={{
-        [`& .${layoutClasses.hasSidebar}`]: {
-          [theme.breakpoints.up(layoutQuery)]: {
-            transition: theme.transitions.create(["padding-left"], {
-              easing: "var(--layout-transition-easing)",
-              duration: "var(--layout-transition-duration)",
-            }),
-            pl: isNavMini
-              ? "var(--layout-nav-mini-width)"
-              : "var(--layout-nav-vertical-width)",
-          },
-        },
-        ...sx,
-      }}
     >
       <Main isNavHorizontal={isNavHorizontal}>{children}</Main>
     </LayoutSection>

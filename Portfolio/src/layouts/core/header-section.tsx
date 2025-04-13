@@ -108,28 +108,43 @@ export function HeaderSection({
         }}
       >
         <Container
-          {...slotProps?.container}
           sx={{
             height: 1,
             display: "flex",
             alignItems: "center",
-            ...slotProps?.container?.sx,
+            justifyContent: "space-between", // ✅ Ensures spacing between left & right
+            flexWrap: "wrap", // ✅ Prevents overflow on smaller screens
           }}
         >
-          {slots?.leftArea}
+          {/* Left Side */}
+          <Box sx={{ display: "flex", flexShrink: 0,ml:0 }}>
+            {slots?.leftArea}
+          </Box>
 
+          {/* Center Area - Takes Remaining Space */}
           <Box
-            sx={{ display: "flex", flex: "1 1 auto", justifyContent: "center" }}
+            sx={{
+              display: "flex",
+              flexGrow: 1, // ✅ Allows centerArea to take available space
+              justifyContent: "center",
+              flexShrink: 1, // ✅ Prevents overflow
+              minWidth: 0, // ✅ Ensures no extra space is forced
+              mr:{
+                xs:"none",lg:7
+              }
+            }}
           >
             {slots?.centerArea}
           </Box>
+
+          {/* Right Side */}
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: 3, // Use gap instead of marginRight
-              minWidth: "auto", // Prevents overflow
-              flexShrink: 0, // Prevents resizing in mobile
+              gap: 2,
+              flexShrink: 0, // ✅ Prevents right side from shrinking too much
+              flexWrap: "wrap", // ✅ Ensures wrapping instead of overflow
             }}
           >
             {slots?.rightMostArea}

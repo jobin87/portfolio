@@ -51,7 +51,7 @@ export function NavVertical({
       )}
 
 
-      {/* {slots?.bottomArea} */}
+      {slots?.bottomArea}
     </>
   );
 
@@ -84,10 +84,11 @@ export function NavVertical({
         sx={{
           display: 'none',
           [theme.breakpoints.up(layoutQuery)]: {
-            display: 'inline-flex',
+            display: 'contents',
           },
         }}
       />
+      hldlldkkd
       {isNavMini ? renderNavMini : renderNavVertical}
     </Box>
   );

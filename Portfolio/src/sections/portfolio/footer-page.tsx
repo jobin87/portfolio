@@ -1,22 +1,25 @@
 import {
-  Avatar,
   Box,
-  Button,
   Card,
   Divider,
   Typography,
   useTheme,
+
 } from "@mui/material";
+
+
 import { DashboardContent } from "src/layouts/dashboard";
 
 export const AboutMePage = () => {
-  const profileImage = "/images/jobin_jose.jpg";
+  const profileImage = "/images/jobin_jose.png";
   const theme = useTheme();
   const textColor = theme.palette.mode === "dark" ? "white" : "black";
   const bgColor =
     theme.palette.mode === "dark" ? theme.palette.background.paper : "white";
+
+
   return (
-    <DashboardContent>
+    <DashboardContent id="about" sx={{pb:0}}>
       {/* About Me Section */}
       <Box
         sx={{
@@ -28,65 +31,58 @@ export const AboutMePage = () => {
         }}
       >
         <Divider sx={{ flexGrow: 1, bgcolor: textColor, height: "2px" }} />
-        <Typography
-          variant="h5"
-          fontWeight="bold"
-          sx={{ color: textColor, mx: 2 }}
+        {/* ✅ Updated About Section */}
+        <Box
+          sx={{
+            maxWidth: "500px", // ✅ Restrict width to prevent excess spacing
+            textAlign: { xs: "center", md: "left" },
+            display: "flex",
+            flexDirection: "column",
+            alignItems: { xs: "center", md: "flex-start" }, // ✅ Align text properly
+            mr: { md: 2 }, // ✅ Adjust spacing on desktop
+            
+          }}
         >
-          About Me
-        </Typography>
+          <Typography
+            variant="h2"
+            fontWeight="bold"
+            sx={{
+              fontSize: { xs: "2rem", md: "3rem" },
+            }}
+          >
+            About Me
+          </Typography>
+        </Box>
         <Divider sx={{ flexGrow: 1, bgcolor: textColor, height: "2px" }} />
       </Box>
-
       <Box
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: "center",
-          gap: {
-            xs: 0,
-            lg: 10,
-          },
+          gap: { xs: 1, lg: 2 }, // ✅ Reduced gap
           mt: 1,
           width: "100%",
-          flexWrap: "wrap",
+          maxWidth: "1200px",
+          px: { xs: 2, md: 4 },
+          flexWrap: "nowrap", // ✅ Prevents wrapping to keep them together
         }}
       >
-        {/* Profile Image Card */}
-        <Card
+        {/* ✅ Fixed-Size Profile Image */}
+        <Box
           sx={{
-            boxShadow: 4,
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "row",
-            maxWidth: "100%",
-          }}
-        >
-          <Avatar
-            src={profileImage}
-            alt="Jobin Jose"
-            sx={{
-              width: { xs: 330, md: 200 },
-              height: { xs: 400, md: 250 },
-              borderRadius: "12px",
-              objectFit: "cover",
-              transition: "0.3s ease-in-out",
-              boxShadow:
-                "inset 10px 10px 20px rgba(0, 0, 0, 0.3), inset -10px -10px 20px rgba(255, 255, 255, 0.2)", // Concave effect
-              transform: "perspective(800px) rotateX(10deg)", // Subtle 3D tilt
-              "&:hover": {
-                transform: "perspective(800px) rotateX(10deg) scale(1.05)", // Enhancing effect on hover
-                boxShadow:
-                  "inset 12px 12px 25px rgba(0, 0, 0, 0.4), inset -12px -12px 25px rgba(255, 255, 255, 0.25)", // Deeper concave on hover
-              },
+            width: { xs: 170, md: 140 }, // ✅ Slightly increased for larger screens
+            height: { xs: 170, md: 150 },
+            borderRadius: "10%",
+            overflow: "hidden",
+            backgroundImage: `url(${profileImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center top", // ✅ Keeps head positioning stable
             }}
-          />
-        </Card>
-
-
-        {/* Skills and Bio */}
+        />
       </Box>
+
       <Card
         sx={{
           p: 3,
@@ -95,7 +91,8 @@ export const AboutMePage = () => {
           maxWidth: "100%",
           borderRadius: 3,
           backgroundColor: bgColor,
-          mt: 5,
+          mt: 2,
+          
         }}
       >
         <Typography variant="h4" fontWeight="bold" gutterBottom>
@@ -118,7 +115,7 @@ export const AboutMePage = () => {
           <strong>
             React Native, Next.js, SQL, and Data Structures & Algorithms (DSA)
             using Java
-          </strong>
+          </strong>{" "}
           to develop optimized and scalable applications.
         </Typography>
         <Typography variant="body1" paragraph>
@@ -127,7 +124,6 @@ export const AboutMePage = () => {
         </Typography>
         <Typography variant="h5" fontWeight="bold" mt={3}>
           Let’s collaborate and build something extraordinary together!
-         
         </Typography>
 
         <Divider
@@ -136,12 +132,12 @@ export const AboutMePage = () => {
             bgcolor: theme.palette.mode === "dark" ? "#444" : "#ddd",
           }}
         />
-         <Button variant="contained" color="primary" sx={{ ml: 3 }}>
-            Hire Me
-          </Button>
+
+        {/* ✅ Hire Me Button - Opens Dialog */}
+        
       </Card>
 
-      {/* Closing Quote */}
+      {/* ✅ Hire Me Dialog */}
       
     </DashboardContent>
   );

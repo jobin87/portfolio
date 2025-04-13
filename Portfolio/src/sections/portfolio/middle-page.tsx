@@ -41,7 +41,7 @@ const projects = [
     images: portfolioImages,
     description:
       "A modern and interactive personal portfolio showcasing my skills and projects.",
-      link: "https://hosman-beta.netlify.app",
+      link: "https://jobinjoseportfolio.netlify.app",
 
   },
 ];

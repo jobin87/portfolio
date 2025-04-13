@@ -27,7 +27,6 @@ import { Scrollbar } from 'src/components/scrollbar';
 import { SearchNotFound } from 'src/components/search-not-found';
 
 import { ResultItem } from './result-item';
-import { groupItems, applyFilter, getAllItems } from './utils';
 
 // ----------------------------------------------------------------------
 

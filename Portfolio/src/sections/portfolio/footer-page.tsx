@@ -89,7 +89,6 @@ export const AboutMePage = () => {
           boxShadow: 4,
           flex: 1,
           maxWidth: "100%",
-          borderRadius: 3,
           backgroundColor: bgColor,
           mt: 2,
           

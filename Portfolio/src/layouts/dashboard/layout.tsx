@@ -195,7 +195,7 @@ export function DashboardLayout({
                       startIcon={<SiLinkedin size={24} color="#0A66C2" />}
                       variant="contained"
                       color="primary"
-                      href="https://www.linkedin.com/in/jobin-jose"
+                      href="https://www.linkedin.com/in/jobin-jose-1aa5b8316"
                       target="_blank"
                       sx={{ justifyContent: "flex-start" }}
                     >

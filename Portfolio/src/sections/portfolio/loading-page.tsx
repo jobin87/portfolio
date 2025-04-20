@@ -45,7 +45,7 @@ export const ProfileLoading = () => {
 
   return (
     <DashboardContent id="techstack"
-      sx={{ minHeight: "80vh", color: textColor, overflowX: "hidden",pb:4 }}
+      sx={{ minHeight: "auto", color: textColor, overflowX: "hidden",pb:4 }}
     >
         <AnimatedOneText sx={{ textAlign: "center", fontWeight: "bold" }}>
           CRAFT INNOVATIVE
